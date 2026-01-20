@@ -1,0 +1,124 @@
+<div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
+    <div class="text-center mb-8">
+        <h1 class="text-4xl md:text-5xl font-bold tracking-tight">
+            <span class="text-gray-900 dark:text-gray-100">True</span><span class="text-red-600">Meet</span>
+        </h1>
+    </div>
+    <div class="mb-8">
+        <button routerLink="/"
+            class="inline-flex items-center gap-2 px-6 py-2 bg-rose-500 text-white font-semibold rounded-full shadow-lg hover:bg-rose-600 transition-all duration-300 transform hover:scale-105">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd"
+                    d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z"
+                    clip-rule="evenodd" />
+            </svg>
+            {{ content().selection.back }}
+        </button>
+    </div>
+
+    <!-- Upcoming Events -->
+    <h2 class="text-3xl font-bold text-gray-800 dark:text-white mb-8 text-center">{{ content().upcomingEventsTitle }}
+    </h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+        @for (event of content().friends.events; track event.title) {
+        <div
+            class="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden flex flex-col transition-transform duration-300 hover:scale-105 hover:shadow-2xl">
+            <div class="relative">
+                <img [ngSrc]="event.imageUrl" [alt]="event.imageAlt" width="400" height="300"
+                    class="w-full h-48 object-cover">
+            </div>
+            <div class="p-6 flex flex-col flex-grow">
+                <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2">{{ event.title }}</h3>
+                <p class="text-gray-600 dark:text-gray-300 text-sm mb-4 flex-grow">{{ event.description }}</p>
+                <div class="space-y-2 text-sm text-gray-500 dark:text-gray-400 mb-4">
+                    <div class="flex items-center gap-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd"
+                                d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z"
+                                clip-rule="evenodd" />
+                        </svg>
+                        <span>{{ event.date }}</span>
+                    </div>
+                    <div class="flex items-center gap-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd"
+                                d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z"
+                                clip-rule="evenodd" />
+                        </svg>
+                        <span>{{ event.location }}</span>
+                    </div>
+                </div>
+
+                <div class="my-4 text-xs">
+                    <p class="font-bold mb-2 text-center text-gray-700 dark:text-gray-300">{{
+                        content().eventCard.spotsLeft }}
+                        {{ event.maxParticipants.men - event.participants.men }} {{ content().eventCard.spotsForMen }}
+                        {{
+                        content().eventCard.and }} {{ event.maxParticipants.women - event.participants.women }} {{
+                        content().eventCard.spotsForWomen }}.</p>
+                    <div class="space-y-1">
+                        <div>
+                            <div class="flex justify-between items-center mb-0.5 text-gray-600 dark:text-gray-400">
+                                <span class="font-semibold text-blue-600 dark:text-blue-400">{{ content().eventCard.men
+                                    }}</span>
+                                <span>{{ event.participants.men }} / {{ event.maxParticipants.men }}</span>
+                            </div>
+                            <div class="w-full bg-gray-200 dark:bg-gray-600 rounded-full h-2.5">
+                                <div class="bg-blue-500 h-2.5 rounded-full"
+                                    [style.width]="(event.participants.men / event.maxParticipants.men * 100) + '%'">
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between items-center mb-0.5 text-gray-600 dark:text-gray-400">
+                                <span class="font-semibold text-pink-600 dark:text-pink-400">{{
+                                    content().eventCard.women }}</span>
+                                <span>{{ event.participants.women }} / {{ event.maxParticipants.women }}</span>
+                            </div>
+                            <div class="w-full bg-gray-200 dark:bg-gray-600 rounded-full h-2.5">
+                                <div class="bg-pink-500 h-2.5 rounded-full"
+                                    [style.width]="(event.participants.women / event.maxParticipants.women * 100) + '%'">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div
+                    class="mt-auto pt-4 border-t border-gray-200 dark:border-gray-600 flex justify-around items-center text-center">
+                    <div>
+                        <p class="text-sm font-medium text-gray-500 dark:text-gray-400">{{ content().eventCard.men }}
+                        </p>
+                        <p class="text-lg font-bold text-gray-900 dark:text-white">{{ event.price.men }}</p>
+                    </div>
+                    <div>
+                        <p class="text-sm font-medium text-gray-500 dark:text-gray-400">{{ content().eventCard.women }}
+                        </p>
+                        <p class="text-lg font-bold text-gray-900 dark:text-white">{{ event.price.women }}</p>
+                    </div>
+                </div>
+                <button (click)="contentService.openParticipationModal()"
+                    class="mt-4 w-full bg-rose-500 text-white font-semibold py-2 rounded-lg hover:bg-rose-600 transition-colors duration-300">{{
+                    content().selection.participate }}</button>
+            </div>
+        </div>
+        }
+    </div>
+
+    <!-- Informational Sections -->
+    <div class="space-y-16">
+        @for (section of content().friends.details; track section.title; let i = $index) {
+        <div class="flex flex-col md:flex-row items-center gap-8 md:gap-12"
+            [class]="i % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'">
+            <div class="md:w-1/2 w-full">
+                <img [ngSrc]="section.imageUrl" [alt]="section.altText" width="800" height="600"
+                    class="rounded-2xl shadow-xl w-full h-auto object-cover">
+            </div>
+            <div class="md:w-1/2 w-full">
+                <h2 class="text-3xl font-bold text-gray-800 dark:text-white mb-4">{{ section.title }}</h2>
+                <p class="text-lg text-gray-600 dark:text-gray-300 leading-relaxed">{{ section.description }}</p>
+            </div>
+        </div>
+        }
+    </div>
+</div>

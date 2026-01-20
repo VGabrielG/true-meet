@@ -4,13 +4,13 @@
   <!-- Language Switcher -->
   <div class="absolute top-4 right-4 z-20">
     <div class="flex items-center bg-white dark:bg-gray-800 rounded-full shadow-md p-1">
-      <button (click)="setLanguage('en')" [class]="language() === 'en' 
+      <button (click)="contentService.setLanguage('en')" [class]="language() === 'en' 
                 ? 'bg-rose-500 text-white' 
                 : 'text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700'"
         class="px-3 py-1 text-sm font-semibold rounded-full transition-colors duration-200">
         EN
       </button>
-      <button (click)="setLanguage('es')" [class]="language() === 'es' 
+      <button (click)="contentService.setLanguage('es')" [class]="language() === 'es' 
                 ? 'bg-rose-500 text-white' 
                 : 'text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700'"
         class="px-3 py-1 text-sm font-semibold rounded-full transition-colors duration-200">
@@ -20,201 +20,10 @@
   </div>
 
   <div class="min-h-screen p-4">
-    @if (selectedMode() === null) {
-    <div class="flex flex-col items-center justify-center h-screen pt-16">
-      <div class="text-center mb-12">
-        <h1
-          class="text-4xl md:text-5xl font-bold text-gray-800 dark:text-white flex items-baseline justify-center gap-3">
-          <span>{{ content().title }}</span>
-          <span class="font-bold tracking-tight">
-            <span class="text-gray-900 dark:text-gray-100">True</span><span class="text-red-600">Meet</span>
-          </span>
-        </h1>
-        <p class="text-lg text-gray-500 dark:text-gray-400 mt-2">{{ content().friends.cta }} {{ language() === 'en' ?
-          'or' : 'o' }} {{ content().couple.cta.toLowerCase() }}</p>
-      </div>
-
-      <div class="w-full max-w-6xl grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
-        <!-- Find Friends Card -->
-        <div (click)="selectMode('friends')"
-          class="relative h-[60vh] rounded-2xl overflow-hidden shadow-2xl cursor-pointer group">
-          <img ngSrc="/img_friends_main.jpg" alt="A group of friends gathered around a table having fun" fill
-            class="object-cover w-full h-full transition-transform duration-500 group-hover:scale-110" priority>
-          <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
-          <div class="absolute inset-0 flex flex-col items-center justify-end p-8 text-center text-white">
-            <h2
-              class="text-4xl lg:text-5xl font-extrabold transform transition-transform duration-500 group-hover:-translate-y-2">
-              {{ content().friends.title }}</h2>
-            <p class="mt-2 text-lg opacity-80 group-hover:opacity-100 transition-opacity duration-300">{{
-              content().friends.cta }}</p>
-          </div>
-        </div>
-
-        <!-- Find Partner Card -->
-        <div (click)="selectMode('couple')"
-          class="relative h-[60vh] rounded-2xl overflow-hidden shadow-2xl cursor-pointer group">
-          <img ngSrc="/img_couple_main.jpg" alt="A couple walking together" fill
-            class="object-cover w-full h-full transition-transform duration-500 group-hover:scale-110" priority>
-          <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
-          <div class="absolute inset-0 flex flex-col items-center justify-end p-8 text-center text-white">
-            <h2
-              class="text-4xl lg:text-5xl font-extrabold transform transition-transform duration-500 group-hover:-translate-y-2">
-              {{ content().couple.title }}</h2>
-            <p class="mt-2 text-lg opacity-80 group-hover:opacity-100 transition-opacity duration-300">{{
-              content().couple.cta }}</p>
-          </div>
-        </div>
-      </div>
-    </div>
-    } @else {
-    <!-- Detail View -->
-    <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
-      <div class="text-center mb-8">
-        <h1 class="text-4xl md:text-5xl font-bold tracking-tight">
-          <span class="text-gray-900 dark:text-gray-100">True</span><span class="text-red-600">Meet</span>
-        </h1>
-      </div>
-      <div class="mb-8">
-        <button (click)="resetSelection()"
-          class="inline-flex items-center gap-2 px-6 py-2 bg-rose-500 text-white font-semibold rounded-full shadow-lg hover:bg-rose-600 transition-all duration-300 transform hover:scale-105">
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-            <path fill-rule="evenodd"
-              d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z"
-              clip-rule="evenodd" />
-          </svg>
-          {{ content().selection.back }}
-        </button>
-      </div>
-
-      <!-- Upcoming Events -->
-      <h2 class="text-3xl font-bold text-gray-800 dark:text-white mb-8 text-center">{{ content().upcomingEventsTitle }}
-      </h2>
-      @if (selectedMode() === 'friends' || selectedMode() === 'couple') {
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
-        @for (event of (selectedMode() === 'friends' ? content().friends.events : content().couple.events); track
-        event.title) {
-        <div
-          class="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden flex flex-col transition-transform duration-300 hover:scale-105 hover:shadow-2xl">
-          <div class="relative">
-            <img [ngSrc]="event.imageUrl" [alt]="event.imageAlt" width="400" height="300"
-              class="w-full h-48 object-cover">
-          </div>
-          <div class="p-6 flex flex-col flex-grow">
-            <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2">{{ event.title }}</h3>
-            <p class="text-gray-600 dark:text-gray-300 text-sm mb-4 flex-grow">{{ event.description }}</p>
-            <div class="space-y-2 text-sm text-gray-500 dark:text-gray-400 mb-4">
-              <div class="flex items-center gap-2">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                  <path fill-rule="evenodd"
-                    d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z"
-                    clip-rule="evenodd" />
-                </svg>
-                <span>{{ event.date }}</span>
-              </div>
-              <div class="flex items-center gap-2">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                  <path fill-rule="evenodd"
-                    d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z"
-                    clip-rule="evenodd" />
-                </svg>
-                <span>{{ event.location }}</span>
-              </div>
-            </div>
-
-            <!-- Participants Info -->
-            <div class="my-4 text-xs">
-              <p class="font-bold mb-2 text-center text-gray-700 dark:text-gray-300">{{ content().eventCard.spotsLeft }}
-                {{ event.maxParticipants.men - event.participants.men }} {{ content().eventCard.spotsForMen }} {{
-                content().eventCard.and }} {{ event.maxParticipants.women - event.participants.women }} {{
-                content().eventCard.spotsForWomen }}.</p>
-              <div class="space-y-1">
-                <!-- Men Progress -->
-                <div>
-                  <div class="flex justify-between items-center mb-0.5 text-gray-600 dark:text-gray-400">
-                    <span class="font-semibold text-blue-600 dark:text-blue-400">{{ content().eventCard.men }}</span>
-                    <span>{{ event.participants.men }} / {{ event.maxParticipants.men }}</span>
-                  </div>
-                  <div class="w-full bg-gray-200 dark:bg-gray-600 rounded-full h-2.5">
-                    <div class="bg-blue-500 h-2.5 rounded-full"
-                      [style.width]="(event.participants.men / event.maxParticipants.men * 100) + '%'"></div>
-                  </div>
-                </div>
-                <!-- Women Progress -->
-                <div>
-                  <div class="flex justify-between items-center mb-0.5 text-gray-600 dark:text-gray-400">
-                    <span class="font-semibold text-pink-600 dark:text-pink-400">{{ content().eventCard.women }}</span>
-                    <span>{{ event.participants.women }} / {{ event.maxParticipants.women }}</span>
-                  </div>
-                  <div class="w-full bg-gray-200 dark:bg-gray-600 rounded-full h-2.5">
-                    <div class="bg-pink-500 h-2.5 rounded-full"
-                      [style.width]="(event.participants.women / event.maxParticipants.women * 100) + '%'"></div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- Prices -->
-            <div
-              class="mt-auto pt-4 border-t border-gray-200 dark:border-gray-600 flex justify-around items-center text-center">
-              <div>
-                <p class="text-sm font-medium text-gray-500 dark:text-gray-400">{{ content().eventCard.men }}</p>
-                <p class="text-lg font-bold text-gray-900 dark:text-white">{{ event.price.men }}</p>
-              </div>
-              <div>
-                <p class="text-sm font-medium text-gray-500 dark:text-gray-400">{{ content().eventCard.women }}</p>
-                <p class="text-lg font-bold text-gray-900 dark:text-white">{{ event.price.women }}</p>
-              </div>
-            </div>
-            <button (click)="openParticipationModal()"
-              class="mt-4 w-full bg-rose-500 text-white font-semibold py-2 rounded-lg hover:bg-rose-600 transition-colors duration-300">{{
-              content().selection.participate }}</button>
-          </div>
-        </div>
-        }
-      </div>
-      }
-
-      <!-- Informational Sections -->
-      @if (selectedMode() === 'friends') {
-      <div class="space-y-16">
-        @for (section of content().friends.details; track section.title; let i = $index) {
-        <div class="flex flex-col md:flex-row items-center gap-8 md:gap-12"
-          [class]="i % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'">
-          <div class="md:w-1/2 w-full">
-            <img [ngSrc]="section.imageUrl" [alt]="section.altText" width="800" height="600"
-              class="rounded-2xl shadow-xl w-full h-auto object-cover">
-          </div>
-          <div class="md:w-1/2 w-full">
-            <h2 class="text-3xl font-bold text-gray-800 dark:text-white mb-4">{{ section.title }}</h2>
-            <p class="text-lg text-gray-600 dark:text-gray-300 leading-relaxed">{{ section.description }}</p>
-          </div>
-        </div>
-        }
-      </div>
-      }
-
-      @if (selectedMode() === 'couple') {
-      <div class="space-y-16">
-        @for (section of content().couple.details; track section.title; let i = $index) {
-        <div class="flex flex-col md:flex-row items-center gap-8 md:gap-12"
-          [class]="i % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'">
-          <div class="md:w-1/2 w-full">
-            <img [ngSrc]="section.imageUrl" [alt]="section.altText" width="800" height="600"
-              class="rounded-2xl shadow-xl w-full h-auto object-cover">
-          </div>
-          <div class="md:w-1/2 w-full">
-            <h2 class="text-3xl font-bold text-gray-800 dark:text-white mb-4">{{ section.title }}</h2>
-            <p class="text-lg text-gray-600 dark:text-gray-300 leading-relaxed">{{ section.description }}</p>
-          </div>
-        </div>
-        }
-      </div>
-      }
-    </div>
-    }
+    <router-outlet></router-outlet>
   </div>
 
-  <!-- Floating Contact Button -->
+  <!-- WhatsApp Floating Button -->
   <a [href]="content().whatsappUrl" target="_blank" rel="noopener noreferrer"
     class="fixed bottom-6 right-6 bg-green-500 text-white rounded-full p-4 shadow-lg hover:bg-green-600 transition-transform transform hover:scale-110 z-30 flex items-center gap-2">
     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
@@ -226,8 +35,8 @@
   </a>
 
   <!-- Participation Modal -->
-  @if (showParticipationModal()) {
-  <div (click)="closeParticipationModal()"
+  @if (contentService.showParticipationModal()) {
+  <div (click)="contentService.closeParticipationModal()"
     class="fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-40 p-4 transition-opacity duration-300 animate-fadeIn">
     <div (click)="$event.stopPropagation()"
       class="bg-white dark:bg-gray-800 rounded-2xl shadow-2xl p-8 max-w-sm w-full text-center transform transition-transform duration-300 animate-scaleIn">
@@ -243,7 +52,7 @@
         </svg>
         <span>{{ content().participationModal.cta }}</span>
       </a>
-      <button (click)="closeParticipationModal()"
+      <button (click)="contentService.closeParticipationModal()"
         class="w-full text-gray-500 dark:text-gray-400 font-medium py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-300">
         {{ content().participationModal.close }}
       </button>

@@ -1,0 +1,50 @@
+<div class="flex flex-col items-center justify-center h-screen pt-16">
+    <div class="text-center mb-12">
+        <h1
+            class="text-4xl md:text-5xl font-bold text-gray-800 dark:text-white flex items-baseline justify-center gap-3">
+            <span>{{ content().title }}</span>
+            <span class="font-bold tracking-tight">
+                <span class="text-gray-900 dark:text-gray-100">True</span><span class="text-red-600">Meet</span>
+            </span>
+        </h1>
+        <p class="text-lg text-gray-500 dark:text-gray-400 mt-2">
+            {{ content().friends.cta }} {{ language() === 'en' ? 'or' : 'o' }} {{ content().couple.cta.toLowerCase() }}
+        </p>
+    </div>
+
+    <div class="w-full max-w-6xl grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 px-4">
+        <!-- Find Friends Card -->
+        <div [routerLink]="['/friends']"
+            class="relative h-[60vh] rounded-2xl overflow-hidden shadow-2xl cursor-pointer group">
+            <img ngSrc="/img_friends_main.jpg" alt="A group of friends gathered around a table having fun" fill
+                class="object-cover w-full h-full transition-transform duration-500 group-hover:scale-110" priority>
+            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
+            <div class="absolute inset-0 flex flex-col items-center justify-end p-8 text-center text-white">
+                <h2
+                    class="text-4xl lg:text-5xl font-extrabold transform transition-transform duration-500 group-hover:-translate-y-2">
+                    {{ content().friends.title }}
+                </h2>
+                <p class="mt-2 text-lg opacity-80 group-hover:opacity-100 transition-opacity duration-300">
+                    {{ content().friends.cta }}
+                </p>
+            </div>
+        </div>
+
+        <!-- Find Partner Card -->
+        <div [routerLink]="['/dates']"
+            class="relative h-[60vh] rounded-2xl overflow-hidden shadow-2xl cursor-pointer group">
+            <img ngSrc="/img_couple_main.jpg" alt="A couple walking together" fill
+                class="object-cover w-full h-full transition-transform duration-500 group-hover:scale-110" priority>
+            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
+            <div class="absolute inset-0 flex flex-col items-center justify-end p-8 text-center text-white">
+                <h2
+                    class="text-4xl lg:text-5xl font-extrabold transform transition-transform duration-500 group-hover:-translate-y-2">
+                    {{ content().couple.title }}
+                </h2>
+                <p class="mt-2 text-lg opacity-80 group-hover:opacity-100 transition-opacity duration-300">
+                    {{ content().couple.cta }}
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
