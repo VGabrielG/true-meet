@@ -13,37 +13,15 @@ const contentData: Record<Language, Content> = {
             cta: 'Expand your circle',
             events: [
                 {
-                    title: 'Connections in Las Condes',
-                    description: 'Board games, good food, and great company. A perfect recipe for new friendships.',
+                    title: 'True Meet Friends',
+                    description: 'Bar in Providencia',
                     date: 'Wednesday, Feb 4, 2026 at 7:00 PM',
-                    location: 'Las Condes',
-                    price: { men: '$18', women: '$15' },
-                    imageUrl: '/evt_connections.jpg',
-                    imageAlt: 'People playing board games',
+                    location: 'Providencia',
+                    price: { men: '$10,000', women: '$8,000' },
+                    imageUrl: '/proximamente.png',
+                    imageAlt: 'Social event at a bar',
                     participants: { men: 10, women: 12 },
                     maxParticipants: { men: 15, women: 15 }
-                },
-                {
-                    title: 'Hiking Club: The Summit',
-                    description: 'Join us for a scenic hike and meet other nature lovers. All skill levels welcome!',
-                    date: 'Saturday, Feb 7, 2026 at 9:00 AM',
-                    location: 'Andes Mountains',
-                    price: { men: '$12', women: '$10' },
-                    imageUrl: '/evt_hiking.jpg',
-                    imageAlt: 'Mountain landscape',
-                    participants: { men: 8, women: 14 },
-                    maxParticipants: { men: 20, women: 20 }
-                },
-                {
-                    title: 'Cooking Night: Italian Pasta',
-                    description: 'Learn to make pasta from scratch and enjoy a delicious dinner with new friends.',
-                    date: 'Friday, Feb 13, 2026 at 8:00 PM',
-                    location: 'Providencia',
-                    price: { men: '$28', women: '$25' },
-                    imageUrl: '/evt_cooking.jpg',
-                    imageAlt: 'Freshly made pasta',
-                    participants: { men: 5, women: 7 },
-                    maxParticipants: { men: 10, women: 10 }
                 }
             ],
             details: [
@@ -72,37 +50,15 @@ const contentData: Record<Language, Content> = {
             cta: 'Start a new story',
             events: [
                 {
-                    title: 'Gourmet Speed Dating',
-                    description: 'A night of fine dining and quick connections. Meet intriguing singles in a chic setting.',
+                    title: 'True Meet Dating',
+                    description: 'Bar in Providencia',
                     date: 'Thursday, Feb 5, 2026 at 8:00 PM',
-                    location: 'Vitacura',
-                    price: { men: '$35', women: '$30' },
-                    imageUrl: '/evt_speed_dating.jpg',
-                    imageAlt: 'Fine dining restaurant',
+                    location: 'Providencia',
+                    price: { men: '$10,000', women: '$8,000' },
+                    imageUrl: '/proximamente.png',
+                    imageAlt: 'Speed dating event at a bar',
                     participants: { men: 14, women: 11 },
                     maxParticipants: { men: 15, women: 15 }
-                },
-                {
-                    title: 'Wine & Conversation',
-                    description: 'Sip exquisite wines and engage in deep conversations. A relaxed way to meet someone special.',
-                    date: 'Saturday, Feb 14, 2026 at 7:30 PM',
-                    location: 'Casablanca Valley',
-                    price: { men: '$45', women: '$40' },
-                    imageUrl: '/evt_wine.jpg',
-                    imageAlt: 'Glasses of wine',
-                    participants: { men: 9, women: 9 },
-                    maxParticipants: { men: 12, women: 12 }
-                },
-                {
-                    title: 'Dance Under the Stars',
-                    description: 'An enchanting night of music, dancing, and potential romance at a beautiful rooftop bar.',
-                    date: 'Friday, Feb 20, 2026 at 9:00 PM',
-                    location: 'Bellavista',
-                    price: { men: '$25', women: '$20' },
-                    imageUrl: '/evt_dance.jpg',
-                    imageAlt: 'City skyline at night',
-                    participants: { men: 18, women: 20 },
-                    maxParticipants: { men: 20, women: 20 }
                 }
             ],
             details: [
@@ -155,37 +111,15 @@ const contentData: Record<Language, Content> = {
             cta: 'Expande tu círculo',
             events: [
                 {
-                    title: 'Conexiones en Las Condes',
-                    description: 'Juegos de mesa, buena comida y excelente compañía. Una receta perfecta para nuevas amistades.',
+                    title: 'True Meet Amigos',
+                    description: 'bar en providencia',
                     date: 'miércoles, 4 de feb. de 2026 a las 19:00',
-                    location: 'Las Condes',
-                    price: { men: '$15.000', women: '$12.000' },
-                    imageUrl: '/evt_connections.jpg',
-                    imageAlt: 'Gente jugando juegos de mesa',
+                    location: 'Providencia',
+                    price: { men: '$10.000', women: '$8.000' },
+                    imageUrl: '/proximamente.png',
+                    imageAlt: 'Evento social en un bar',
                     participants: { men: 10, women: 12 },
                     maxParticipants: { men: 15, women: 15 }
-                },
-                {
-                    title: 'Club de Senderismo: La Cumbre',
-                    description: 'Únete a una caminata escénica y conoce a otros amantes de la naturaleza. ¡Todos los niveles son bienvenidos!',
-                    date: 'sábado, 7 de feb. de 2026 a las 9:00',
-                    location: 'Cordillera de los Andes',
-                    price: { men: '$10.000', women: '$8.000' },
-                    imageUrl: '/evt_hiking.jpg',
-                    imageAlt: 'Paisaje de montaña',
-                    participants: { men: 8, women: 14 },
-                    maxParticipants: { men: 20, women: 20 }
-                },
-                {
-                    title: 'Noche de Cocina: Pasta Italiana',
-                    description: 'Aprende a hacer pasta desde cero y disfruta de una deliciosa cena con nuevos amigos.',
-                    date: 'viernes, 13 de feb. de 2026 a las 20:00',
-                    location: 'Providencia',
-                    price: { men: '$22.000', women: '$20.000' },
-                    imageUrl: '/evt_cooking.jpg',
-                    imageAlt: 'Pasta recién hecha',
-                    participants: { men: 5, women: 7 },
-                    maxParticipants: { men: 10, women: 10 }
                 }
             ],
             details: [
@@ -214,37 +148,15 @@ const contentData: Record<Language, Content> = {
             cta: 'Comienza una nueva historia',
             events: [
                 {
-                    title: 'Citas Rápidas Gourmet',
-                    description: 'Una noche de alta cocina y conexiones rápidas. Conoce solteros interesantes en un ambiente chic.',
+                    title: 'True Meet Parejas',
+                    description: 'bar en providencia',
                     date: 'jueves, 5 de feb. de 2026 a las 20:00',
-                    location: 'Vitacura',
-                    price: { men: '$28.000', women: '$25.000' },
-                    imageUrl: '/evt_speed_dating.jpg',
-                    imageAlt: 'Restaurante de alta cocina',
+                    location: 'Providencia',
+                    price: { men: '$10.000', women: '$8.000' },
+                    imageUrl: '/proximamente.png',
+                    imageAlt: 'Evento de citas rápidas en un bar',
                     participants: { men: 14, women: 11 },
                     maxParticipants: { men: 15, women: 15 }
-                },
-                {
-                    title: 'Vino y Conversación',
-                    description: 'Degusta vinos exquisitos y participa en conversaciones profundas. Una forma relajada de conocer a alguien especial.',
-                    date: 'sábado, 14 de feb. de 2026 a las 19:30',
-                    location: 'Valle de Casablanca',
-                    price: { men: '$38.000', women: '$35.000' },
-                    imageUrl: '/evt_wine.jpg',
-                    imageAlt: 'Copas de vino',
-                    participants: { men: 9, women: 9 },
-                    maxParticipants: { men: 12, women: 12 }
-                },
-                {
-                    title: 'Baila Bajo las Estrellas',
-                    description: 'Una noche encantadora de música, baile y posible romance en un hermoso bar en la azotea.',
-                    date: 'viernes, 20 de feb. de 2026 a las 21:00',
-                    location: 'Bellavista',
-                    price: { men: '$20.000', women: '$18.000' },
-                    imageUrl: '/evt_dance.jpg',
-                    imageAlt: 'Horizonte de la ciudad por la noche',
-                    participants: { men: 18, women: 20 },
-                    maxParticipants: { men: 20, women: 20 }
                 }
             ],
             details: [
